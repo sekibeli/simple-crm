@@ -8,6 +8,12 @@ import { User } from 'src/models/user.class';
 })
 export class DialogAddUserComponent {
   user = new User;
+  birthDate;
 
   onNoClick(){}
+
+  saveUser(){
+    this.user.birthDate = this.birthDate?.getTime();
+    console.log('Current user is: ', this.user);
+  }
 }
