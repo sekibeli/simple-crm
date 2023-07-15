@@ -49,10 +49,10 @@ export class UserDetailComponent implements OnInit {
 
   editUserDetail() {
     const dialog = this.dialog.open(DialogEditUserComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User(this.user.toJSON()); // Eine Kopie des Users wird zum bearbeiten erstellt, sodass er auch wieder verworfen werden kann. Wird nur "this.user" genommen, dann wird das orginale Objekt verändert.
   }
   editAddress() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User(this.user.toJSON());
   }
 }
