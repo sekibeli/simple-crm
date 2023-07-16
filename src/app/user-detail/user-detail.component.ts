@@ -37,8 +37,6 @@ export class UserDetailComponent implements OnInit {
 
     onSnapshot(collData, (user) => {
       if (user.exists()) {
-        // console.log(`Dokumentdaten: ${JSON.stringify(user.data())}`);
-        // console.log(user.data(), user.id);
         this.user = new User(user.data());
         console.log(this.user);
       } else {
@@ -50,9 +48,11 @@ export class UserDetailComponent implements OnInit {
   editUserDetail() {
     const dialog = this.dialog.open(DialogEditUserComponent);
     dialog.componentInstance.user = new User(this.user.toJSON()); // Eine Kopie des Users wird zum bearbeiten erstellt, sodass er auch wieder verworfen werden kann. Wird nur "this.user" genommen, dann wird das orginale Objekt verändert.
+  dialog.componentInstance.userId = this.userId;
   }
   editAddress() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
     dialog.componentInstance.user = new User(this.user.toJSON());
+    dialog.componentInstance.userId = this.userId;
   }
 }
